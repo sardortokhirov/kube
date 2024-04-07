@@ -40,6 +40,9 @@ spec:
         - name: cleanup
           image: busybox:latest
           command: [ 'sh', '-c', 'rm -rf /var/lib/postgresql/data/lost+found' ]
+        - name: init-sql
+          image: postgres:16
+          command: [ 'sh', '-c', 'psql -U postgres -c "CREATE DATABASE loomo;"' ]
           volumeMounts:
             - name: postgres-data
               mountPath: /var/lib/postgresql/data
